@@ -1,0 +1,247 @@
+
+.container {
+  min-height: 100vh;
+  min-width: 1440px;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: auto;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.contentGrid {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 600px 600px;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Left Side - Branding */
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.tagline {
+  text-align: center;
+  max-width: 500px;
+}
+
+.tagline p {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.highlight {
+  color: #ec4899;
+}
+
+.mockupImage {
+  width: 450px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right Side - Login Form */
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.formContainer {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loginBox {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 3rem 3rem 2rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.input {
+  width: 100%;
+  background-color: #09090b;
+  border: 1px solid #3f3f46;
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #52525b;
+}
+
+.input::placeholder {
+  color: #71717a;
+}
+
+.loginButton {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #1d4ed8;
+}
+
+.forgotPassword {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.forgotPassword a {
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  text-decoration: none;
+}
+
+.forgotPassword a:hover {
+  color: #d4d4d8;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 3rem;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: #3f3f46;
+}
+
+.orText {
+  font-size: 0.9rem;
+  color: #71717a;
+  font-weight: 600;
+}
+
+.buttonContainer {
+  padding: 0 3rem;
+}
+
+.facebookButton {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.facebookButton:hover {
+  border-color: #52525b;
+}
+
+.facebookIcon {
+  width: 22px;
+  height: 22px;
+  color: #3b82f6;
+}
+
+.createButton {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.createButton:hover {
+  border-color: #52525b;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #52525b;
+  margin-top: 2rem;
+}
+
+/* Footer */
+.footer {
+  padding: 2rem 3rem;
+}
+
+.footerLinks {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.footerLinks a {
+  font-size: 0.8rem;
+  color: #52525b;
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  color: #a1a1aa;
+}
