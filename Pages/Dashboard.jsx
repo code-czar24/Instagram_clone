@@ -68,6 +68,14 @@ const SUGGESTIONS = [
   { username: 'leo.design', name: 'Leo Kim', avatar: 'https://i.pravatar.cc/150?img=51', reason: 'Suggested for you' },
 ];
 
+const HIGHLIGHTS = [
+  { id: 1, title: 'Travel', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=150&h=150&fit=crop' },
+  { id: 2, title: 'Food', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=150&h=150&fit=crop' },
+  { id: 3, title: 'Gym', img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=150&h=150&fit=crop' },
+  { id: 4, title: 'Art', img: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=150&h=150&fit=crop' },
+  { id: 5, title: 'Coding', img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=150&h=150&fit=crop' },
+];
+
 /* ─── SVG Icons ─── */
 const Icons = {
   home: <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997A2.997 2.997 0 0 1 15 16.545V22h7V11.543L12 2 2 11.543V22h7.005z"/></svg>,
@@ -89,6 +97,7 @@ const Icons = {
   verified: <svg width="12" height="12" viewBox="0 0 40 40" fill="#0095f6"><path d="M19.998 3.094L14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v6.354h6.234L14.638 40l5.36-3.094L25.358 40l2.972-5.15h6.234v-6.354L40 25.359 36.905 20 40 14.641l-5.436-3.137V5.15h-6.234L25.358 0l-5.36 3.094zM18 26.752l-6.4-6.375 2.115-2.108 4.285 4.27 8.285-8.258 2.115 2.108L18 26.752z"/></svg>,
   sun: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
   moon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
+  star: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
 };
 
 /* ─── Styles ─── */
@@ -219,6 +228,41 @@ const css = `
   display: flex; align-items: center; justify-content: center;
 }
 .db-story-ring-wrap { position: relative; }
+
+/* ─── Highlights ─── */
+.db-highlights {
+  display: flex; gap: 15px;
+  overflow-x: auto;
+  padding: 0 16px 12px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.db-highlights::-webkit-scrollbar { display: none; }
+.db-highlight-item {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  cursor: pointer; flex-shrink: 0;
+}
+.db-highlight-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 1px solid #dbdbdb;
+  padding: 3px;
+  background: #fff;
+  transition: transform 0.2s;
+}
+.db-highlight-item:hover .db-highlight-circle { transform: scale(1.05); }
+.db-highlight-circle img {
+  width: 100%; height: 100%;
+  border-radius: 50%; object-fit: cover;
+}
+.db-highlight-title {
+  font-size: 11px;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* ─── Post Card ─── */
 .db-post {
@@ -458,6 +502,10 @@ const css = `
 .dashboard-root.dark .db-post-add-comment {
   border-color: #262626;
 }
+.dashboard-root.dark .db-highlight-circle {
+  background: #000;
+  border-color: #262626;
+}
 `;
 
 /* ─── Component ─── */
@@ -498,6 +546,7 @@ export default function Dashboard({ onLogout }) {
     { label: 'Messages', icon: Icons.messenger, notif: true },
     { label: 'Notifications', icon: Icons.heart },
     { label: 'Create', icon: Icons.create },
+    { label: 'Highlights', icon: Icons.star },
     { label: 'Profile', isProfile: true },
   ];
 
@@ -568,6 +617,26 @@ export default function Dashboard({ onLogout }) {
                   <span className="db-story-username">{story.username}</span>
                 </div>
               ))}
+            </div>
+            
+            <div style={{ padding: '16px 16px 8px', fontSize: '13px', fontWeight: 600, color: '#737373' }}>
+              Highlights
+            </div>
+            <div className="db-highlights">
+              {HIGHLIGHTS.map(h => (
+                <div key={h.id} className="db-highlight-item">
+                  <div className="db-highlight-circle">
+                    <img src={h.img} alt={h.title} />
+                  </div>
+                  <span className="db-highlight-title">{h.title}</span>
+                </div>
+              ))}
+              <div className="db-highlight-item">
+                <div className="db-highlight-circle" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', color: '#dbdbdb' }}>
+                  +
+                </div>
+                <span className="db-highlight-title">New</span>
+              </div>
             </div>
           </div>
 
