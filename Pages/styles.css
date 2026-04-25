@@ -1,0 +1,235 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+  color: #262626;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 935px;
+  padding: 30px 0;
+}
+
+.single-column {
+  flex-direction: column;
+}
+
+/* Phone Preview Section */
+.phone-preview {
+  display: none;
+
+}
+
+@media (min-width: 876px) {
+  .phone-preview {
+    display: block;
+    width: 454px;
+    height: 618px;
+    background-image: url('https://www.instagram.com/static/images/homepage/home-phones.png/c245694827e4.png');
+    background-size: 454px 618px;
+    position: relative;
+  }
+  
+  .phone-preview img {
+    position: absolute;
+    top: 70px;
+    right: 3px;
+    width: 500px;
+    height: 538px;
+  }
+}
+
+/* Form Styles */
+.form-column {
+  width: 100%;
+  max-width: 350px;
+}
+
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #dbdbdb;
+  padding: 10px 40px 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.instagram-logo {
+  font-family: 'Cookie', cursive; /* Instagram uses a custom brand font, using fallback */
+  font-size: 48px;
+  margin: 22px 0 12px;
+  font-weight: normal;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-field {
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  padding: 9px 8px 7px;
+  font-size: 12px;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #a8a8a8;
+}
+
+.primary-button {
+  background-color: #0095f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.primary-button:hover {
+  background-color: #1877f2;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 10px 0 18px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+
+.or-text {
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8e8e8e;
+}
+
+/* Facebook Button */
+.facebook-button {
+  background: none;
+  border: none;
+  color: #385185;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.forgot-password {
+  color: #00376b;
+  font-size: 12px;
+  text-decoration: none;
+  margin-top: 12px;
+}
+
+/* Toggle Card */
+.toggle-card {
+  background-color: #ffffff;
+  border: 1px solid #dbdbdb;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.toggle-card a {
+  color: #0095f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Signup Specific */
+.signup-text {
+  color: #8e8e8e;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+.fb-signup {
+  margin-top: 0;
+}
+
+.terms-text {
+  color: #8e8e8e;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 10px 0;
+}
+
+.terms-text a {
+  text-decoration: none;
+  color: #8e8e8e;
+  font-weight: 600;
+}
+
+/* Get the App */
+.get-app {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.get-app p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.app-links img {
+  height: 40px;
+  margin: 0 4px;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  max-width: 935px;
+  padding: 24px 16px 52px;
+  text-align: center;
+  color: #8e8e8e;
+  font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.footer-links span {
+  cursor: pointer;
+}
+
+.footer-copyright {
+  margin-top: 12px;
+}
