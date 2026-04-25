@@ -6,13 +6,21 @@ import Dashboard from '../Pages/Dashboard'
 
 
 
-
 function App() {
   const [toggleAuth, setToggleAuth] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const user = localStorage.getItem("user");
+    const loggedIn = localStorage.getItem("loggedIn");
+    return !!(user && loggedIn === "true");
+  });
 
   function handleToggle() {
     setToggleAuth(!toggleAuth);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("loggedIn");
+    setIsAuthenticated(false);
   }
 
   if (!isAuthenticated) {
@@ -32,7 +40,7 @@ function App() {
     );
   }
 
-  return <Dashboard />;
+  return <Dashboard onLogout={handleLogout} />;
 }
 
 export default App

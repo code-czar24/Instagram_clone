@@ -9,6 +9,7 @@ const Login = ({handleToggle, setIsAuthenticated}) => {
     let user = JSON.parse(localStorage.getItem("user"))
 
     if (user.email == event.target.email.value && user.password == event.target.password.value) {
+      localStorage.setItem("loggedIn", "true")
       setIsAuthenticated(true)
     }else {
     console.log("Invalid credentials or user not found");
