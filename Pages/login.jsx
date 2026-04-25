@@ -1,7 +1,21 @@
 import React from 'react';
 import './styles.css';
 
-const Login = () => {
+
+
+const Login = ({handleToggle, setIsAuthenticated}) => {
+  function handleLogin(event) {
+    event.preventDefault();
+    let user = JSON.parse(localStorage.getItem("user"))
+
+    if (user.email == event.target.email.value && user.password == event.target.password.value) {
+      setIsAuthenticated(true)
+    }else {
+    console.log("Invalid credentials or user not found");
+  }
+
+
+  }
   return (
     <div className="container">
       <div className="main-content">
@@ -16,18 +30,21 @@ const Login = () => {
           <div className="form-card">
             <h1 className="instagram-logo">Instagram</h1>
             
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={handleLogin}>
               <input 
                 type="text" 
-                placeholder="Phone number, username, or email" 
+                placeholder="email" 
                 className="input-field"
+                name="email"
               />
               <input 
                 type="password" 
                 placeholder="Password" 
                 className="input-field"
+                name="password"
+
               />
-              <button type="button" className="primary-button">Log in</button>
+              <button type="submit" className="primary-button">Log in</button>
               
               <div className="divider">
                 <div className="line"></div>
@@ -45,7 +62,7 @@ const Login = () => {
           </div>
           
           <div className="toggle-card">
-            <p>Don't have an account? <a href="#">Sign up</a></p>
+            <p>Don't have an account? <button onClick={handleToggle}>Sign up</button></p>
           </div>
           
           <div className="get-app">
