@@ -87,6 +87,8 @@ const Icons = {
   logout: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>,
   emoji: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>,
   verified: <svg width="12" height="12" viewBox="0 0 40 40" fill="#0095f6"><path d="M19.998 3.094L14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v6.354h6.234L14.638 40l5.36-3.094L25.358 40l2.972-5.15h6.234v-6.354L40 25.359 36.905 20 40 14.641l-5.436-3.137V5.15h-6.234L25.358 0l-5.36 3.094zM18 26.752l-6.4-6.375 2.115-2.108 4.285 4.27 8.285-8.258 2.115 2.108L18 26.752z"/></svg>,
+  sun: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
+  moon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
 };
 
 /* ─── Styles ─── */
@@ -417,6 +419,45 @@ const css = `
   .db-feed-area { padding-top: 16px; padding-bottom: 60px; }
 }
 .db-mobile-nav { display: none; }
+
+/* ─── Dark Theme ─── */
+.dashboard-root.dark {
+  background: #000;
+  color: #f5f5f5;
+}
+.dashboard-root.dark .db-sidebar, 
+.dashboard-root.dark .db-stories, 
+.dashboard-root.dark .db-post, 
+.dashboard-root.dark .db-mobile-nav {
+  background: #000;
+  border-color: #262626;
+}
+.dashboard-root.dark .db-nav-item, 
+.dashboard-root.dark .db-post-more,
+.dashboard-root.dark .db-post-add-comment .emoji-btn {
+  color: #f5f5f5;
+}
+.dashboard-root.dark .db-nav-item:hover, 
+.dashboard-root.dark .db-post-more:hover {
+  background: #1a1a1a;
+}
+.dashboard-root.dark .db-nav-item.active .db-nav-avatar {
+  border-color: #f5f5f5;
+}
+.dashboard-root.dark .db-post-location,
+.dashboard-root.dark .db-post-time,
+.dashboard-root.dark .db-post-comments-preview,
+.dashboard-root.dark .db-profile-fullname,
+.dashboard-root.dark .db-suggestion-reason,
+.dashboard-root.dark .db-suggestions-header span {
+  color: #a8a8a8;
+}
+.dashboard-root.dark .db-post-add-comment input {
+  color: #f5f5f5;
+}
+.dashboard-root.dark .db-post-add-comment {
+  border-color: #262626;
+}
 `;
 
 /* ─── Component ─── */
@@ -427,6 +468,7 @@ export default function Dashboard({ onLogout }) {
   const [followedUsers, setFollowedUsers] = useState({});
   const [commentTexts, setCommentTexts] = useState({});
   const [activeNav, setActiveNav] = useState('Home');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleLike = (id) => {
     setLikedPosts(prev => ({ ...prev, [id]: !prev[id] }));
@@ -460,7 +502,7 @@ export default function Dashboard({ onLogout }) {
   ];
 
   return (
-    <div className="dashboard-root">
+    <div className={`dashboard-root ${isDarkMode ? 'dark' : ''}`}>
       <style>{css}</style>
 
       {/* ─── Sidebar ─── */}
@@ -491,6 +533,10 @@ export default function Dashboard({ onLogout }) {
           <div className="db-nav-item" onClick={() => setActiveNav('Threads')}>
             <span className="nav-icon">{Icons.threads}</span>
             <span className="nav-label">Threads</span>
+          </div>
+          <div className="db-nav-item" onClick={() => setIsDarkMode(!isDarkMode)}>
+            <span className="nav-icon">{isDarkMode ? Icons.sun : Icons.moon}</span>
+            <span className="nav-label">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
           </div>
           <div className="db-nav-item" style={{ marginTop: 4 }}>
             <span className="nav-icon">{Icons.more}</span>
